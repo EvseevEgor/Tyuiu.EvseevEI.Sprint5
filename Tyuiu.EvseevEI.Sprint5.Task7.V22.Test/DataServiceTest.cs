@@ -9,7 +9,7 @@ namespace Tyuiu.EvseevEI.Sprint5.Task7.V22.Test
         [TestMethod]
         public void CheckedExistsFile()
         {
-            string path = @"C:\Users\User\source\repos\Tyuiu.VarovaAA.Sprint5\Tyuiu.VarovaAA.Sprint5.Task7.V22\bin\Debug\InPutDataFileTask7V22.txt";
+            string path = @"C:\Users\User\source\repos\Tyuiu.EvseevEI.EvseevEgor\Tyuiu.EvseevEI.Sprint5.Task7.V22\bin\Debug\InPutDataFileTask7V22.txt";
 
             FileInfo fileInfo = new FileInfo(path);
             bool fileExists = fileInfo.Exists;
