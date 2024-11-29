@@ -7,20 +7,17 @@ using System.IO;
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.EvseevEI.Sprint5.Task7.V22.Lib
 {
-    public class DataService: ISprint5Task7V22
+    public class DataService : ISprint5Task7V22
     {
         public string LoadDataAndSave(string path)
         {
-            string pathSaveFile = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask7.txt";
-
-            FileInfo fileInfo = new FileInfo(pathSaveFile);
+            string pathsave = Path.Combine(Path.GetTempPath(), "OutPutDataFileTask7V22.txt");
+            FileInfo fileInfo = new FileInfo(pathsave);
             bool fileExists = fileInfo.Exists;
-
             if (fileExists)
             {
-                File.Delete(pathSaveFile);
+                File.Delete(pathsave);
             }
-
             string strLine = "";
             using (StreamReader reader = new StreamReader(path))
             {
@@ -29,20 +26,21 @@ namespace Tyuiu.EvseevEI.Sprint5.Task7.V22.Lib
                 {
                     for (int i = 0; i < line.Length; i++)
                     {
-                        if ((line[i] == '!') || (line[i] == '?') || (line[i] == '-') || (line[i] == '.') || (line[i] == ','))
+                        if ((line[i] == '!') || (line[i] == '.') || (line[i] == '?') || (line[i] == ',') || (line[i] == '-'))
                         {
                             strLine = strLine + '#';
                         }
                         else
                         {
-                            strLine = strLine + line[i];
+                            strLine += line[i];
                         }
                     }
-                    File.AppendAllText(pathSaveFile, strLine + Environment.NewLine);
+                    File.AppendAllText(pathsave, strLine);
                     strLine = "";
+
                 }
             }
-            return pathSaveFile;
+            return pathsave;
         }
     }
 }
